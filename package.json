@@ -17,6 +17,7 @@
     "dev": "bun --hot run src/index.tsx"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "siopao": "^0.4.2",
     "uuid": "^9.0.1"
   }

@@ -3,18 +3,44 @@ import { setCookie, getCookie, deleteCookie } from './cookies.js'
 let loginframe = document.getElementById('loginframe')
 
 let loginForm = () => {
-    let form = document.createElement('form')
-    loginframe.appendChild(form)
+    let topRow = document.createElement('div')
+    topRow.classList.add('row', 'px-5', 'my-3')
+    loginframe.appendChild(topRow)
 
-    form.onsubmit = (e) => {
-        e.preventDefault()
-        let username = e.target.username.value
+    let leftCol = document.createElement('div')
+    leftCol.classList.add('col-sm-7', 'px-2')
+    topRow.appendChild(leftCol)
+
+    let inputUsername = document.createElement('input')
+    inputUsername.classList.add('form-control', 'form-control-lg')
+    inputUsername.placeholder = 'Enter your username'
+    inputUsername.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault()
+            buttonLogin.click()
+        }
+    })
+    leftCol.appendChild(inputUsername)
+
+    let rightCol = document.createElement('div')
+    rightCol.classList.add('col-sm-5', 'px-2')
+    topRow.appendChild(rightCol)
+
+    let buttonLogin = document.createElement('button')
+    buttonLogin.classList.add('btn', 'btn-primary', 'btn-lg')
+    buttonLogin.style='width: 100%'
+    buttonLogin.innerHTML = 'Log In'
+    rightCol.appendChild(buttonLogin)
+
+    buttonLogin.onclick = () => {
+        let username = inputUsername.value.trim()
+        if (username === "") {
+            alert('Please enter a username')
+            return
+        }
         setCookie('username', username)
         window.location.reload()
     }
-
-    let label = document.createElement('label')
-    label.innerHTML = 'Username'
     
     let input = document.createElement('input')
     input.name = 'username'
@@ -23,37 +49,62 @@ let loginForm = () => {
     label.appendChild(input)
     form.appendChild(label)
 
-    let submit = document.createElement('input')
-    submit.type = 'submit'
-    submit.value = 'Log In'
-    form.appendChild(submit)
+    
 }
 
 let homepageForm = () => {
-    let continueButton = document.createElement('button')
+    let topRow = document.createElement('div')
+    topRow.classList.add('row', 'px-5', 'my-3')
+    loginframe.appendChild(topRow)
+
+    let leftCol = document.createElement('div')
+    leftCol.classList.add('col-sm-6', 'px-2')
+    topRow.appendChild(leftCol)
+
+    let buttonContinue = document.createElement('button')
+    buttonContinue.classList.add('btn', 'btn-primary', 'btn-lg')
+    buttonContinue.style='width: 100%'
     let username = getCookie("username")
-    continueButton.innerHTML = `Continue as ${username}`
-    loginframe.appendChild(continueButton)
-    continueButton.onclick = () => {
+    buttonContinue.innerHTML = `Continue as ${username}`
+
+    leftCol.appendChild(buttonContinue)
+    buttonContinue.onclick = () => {
         window.location.href = '/chats'
     }
 
-    let logOutButton = document.createElement('button')
-    logOutButton.innerHTML = 'Log Out'
-    logOutButton.classList.add('secondary')
-    loginframe.appendChild(logOutButton)
-    logOutButton.onclick = () => {
+    let rightCol = document.createElement('div')
+    rightCol.classList.add('col-sm-6', 'px-2')
+    topRow.appendChild(rightCol)
+
+    let buttonLogout = document.createElement('button')
+    buttonLogout.classList.add('btn', 'btn-secondary', 'btn-lg')
+    buttonLogout.style='width: 100%'
+    buttonLogout.innerHTML = 'Log Out'
+    rightCol.appendChild(buttonLogout)
+    buttonLogout.onclick = () => {
         deleteCookie("username")
         window.location.reload()
     }
-    
-    let container = loginframe.parentElement
-    console.log(container)
+
+    let bottomRow = document.createElement('div')
+    bottomRow.classList.add('row', 'px-5', 'my-3')
+    loginframe.appendChild(bottomRow)
+
+    let fullCol = document.createElement('div')
+    fullCol.classList.add('col-sm-12', 'px-2')
+    bottomRow.appendChild(fullCol)
+
+    let buttonDelete = document.createElement('button')
+    buttonDelete.classList.add('btn', 'btn-danger', 'btn-lg')
+    buttonDelete.style='width: 100%'
+    buttonDelete.innerHTML = `Delete User ${username}`
+    fullCol.appendChild(buttonDelete)
+    buttonDelete.onclick = () => {
+        alert('deleting user')
+    }
 }
 
 let username = getCookie("username")
-
-console.log(username);
 
 if (username === "") {
     loginForm()
