@@ -13,7 +13,10 @@ const head = (enableMathjax: boolean, extra: JSX.Element | undefined) => (
     {enableMathjax && <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>}
     {enableMathjax && <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>}
     {extra}
-    <style> {`pre { white-space: pre-wrap; word-wrap: break-word; }`} </style>
+    <style> {`
+      pre { white-space: pre-wrap; word-wrap: break-word; }
+      div { scrollbar-width: none;}
+    `} </style>
   </head>
 )
 

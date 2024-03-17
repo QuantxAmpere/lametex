@@ -164,7 +164,7 @@ const messageBlockContent = async (message: db.Message, includeMathJaxCall: bool
         
         <div className="row">
           <div className="col">
-            <div id={"message-" + message.id + "-response-typeset"} className="overflow-scroll">
+            <div id={"message-" + message.id + "-response-typeset"} className="overflow-x-scroll overflow-y-hidden">
               {message.response}
             </div>
           </div>
