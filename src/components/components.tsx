@@ -45,7 +45,7 @@ let conversationList = async (username: string) => {
     )
 }
 
-let messagesList = async (username: string, conversationId: number) => {
+let messagesList = async (username: string, conversationId: string) => {
     let data = await db.loadData()
     let chat = data.chats.find(chat => chat.username === username)
     if (!chat) return 'NO CHAT FOUND'

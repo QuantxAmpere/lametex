@@ -4,7 +4,7 @@ let loginframe = document.getElementById('loginframe')
 
 let loginForm = () => {
     let topRow = document.createElement('div')
-    topRow.classList.add('row', 'px-5', 'my-3')
+    topRow.classList.add('row', 'px-5', 'my-3') 
     loginframe.appendChild(topRow)
 
     let leftCol = document.createElement('div')
@@ -62,14 +62,14 @@ let homepageForm = () => {
     topRow.appendChild(leftCol)
 
     let buttonContinue = document.createElement('button')
-    buttonContinue.classList.add('btn', 'btn-primary', 'btn-lg')
+    buttonContinue.classList.add('btn', 'btn-primary', 'btn-lg', 'mb-2')
     buttonContinue.style='width: 100%'
     let username = getCookie("username")
     buttonContinue.innerHTML = `Continue as ${username}`
 
     leftCol.appendChild(buttonContinue)
     buttonContinue.onclick = () => {
-        window.location.href = '/chats'
+        window.location.href = '/chat'
     }
 
     let rightCol = document.createElement('div')
@@ -77,7 +77,7 @@ let homepageForm = () => {
     topRow.appendChild(rightCol)
 
     let buttonLogout = document.createElement('button')
-    buttonLogout.classList.add('btn', 'btn-secondary', 'btn-lg')
+    buttonLogout.classList.add('btn', 'btn-secondary', 'btn-lg', 'mb-2')
     buttonLogout.style='width: 100%'
     buttonLogout.innerHTML = 'Log Out'
     rightCol.appendChild(buttonLogout)
@@ -100,7 +100,7 @@ let homepageForm = () => {
     buttonDelete.innerHTML = `Delete User ${username}`
     fullCol.appendChild(buttonDelete)
     buttonDelete.onclick = () => {
-        alert('deleting user')
+        if (confirm("Are you sure you want to delete your account?")) alert('deleting user')
     }
 }
 
