@@ -361,7 +361,7 @@ const chatWindow = async (username: string) => {
   return render(
     <html lang="en">
       {components.head(true, undefined)}
-      <body data-bs-theme="dark" className="vh-100">
+      <body data-bs-theme="dark" className="vh-100 overflow-hidden">
         
         {await chatWindowContent(username, 0, convoid)}
 
