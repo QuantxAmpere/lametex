@@ -176,4 +176,4 @@ dist
 
 
 
-./src/db/data.json
+src/db/data.json
